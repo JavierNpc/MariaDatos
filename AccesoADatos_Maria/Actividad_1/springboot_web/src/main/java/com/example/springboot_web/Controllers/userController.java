@@ -33,10 +33,6 @@ public class userController {
         model.put("title", "hola mundo");
         model.put("user", user);
 
-        
-       
-
-       
     
         return "details";
     }

@@ -6,13 +6,11 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+@RestController
 public class UserRestCotroller {
     
-    @RestController
-public class userController {
-        
 
-    
     @GetMapping("/details")
     public Map<Integer,HashMap> detailMap(){
         Map<Integer,HashMap> body = new HashMap<>();
@@ -29,11 +27,10 @@ public class userController {
             body.put(i, usu);
         }
 
-        
-
+    
         return body;
     }
 
 
 }
-}
+
