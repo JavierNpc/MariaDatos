@@ -42,7 +42,12 @@ public class Product {
 
     //**************************************************************
 
-    
-
+    public Object clone(){
+        try {
+            return super.clone();
+        } catch (Exception e) {
+            return new Product(id,name,precio);
+        }
+    }
 
 }
