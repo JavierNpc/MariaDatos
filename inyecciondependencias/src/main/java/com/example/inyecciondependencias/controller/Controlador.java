@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.inyecciondependencias.models.Product;
 import com.example.inyecciondependencias.services.ProductServices;
+import com.example.inyecciondependencias.services.ProductServicesImpl;
+
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/api")
 public class Controlador {
     
-    private ProductServices service = new ProductServices();
+    private ProductServicesImpl service = new ProductServicesImpl();
 
     @GetMapping("/productos")
     public List<Product> list(){
