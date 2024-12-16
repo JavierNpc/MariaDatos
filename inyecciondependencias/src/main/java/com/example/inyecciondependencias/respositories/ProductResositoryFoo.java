@@ -1,41 +1,29 @@
 package com.example.inyecciondependencias.respositories;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
+
 import com.example.inyecciondependencias.models.Product;
 
-public class ProductResositoryFoo {
 
-    private List<Product> data;
+@Primary
+@Repository
+public class ProductResositoryFoo implements ProductResository {
 
-
-    //Contructor *********************************************************
-    public ProductResositoryFoo() {
-        this.data = Arrays.asList(
-            new Product(1L,"Mesa circular Razor", 200L),
-            new Product(2L,"Kaito", 20L),
-            new Product(3L,"Goku_F", 600L),
-            new Product(4L,"Laser_M", 40L)
-        
-        );
-    }
-    // *******************************************************************
-
-    // Funciones *********************************************************
-
+    @Override
     public List<Product> findAll(){
-       return data;
+        return Collections.singletonList(new Product(1L, "Kaito", 600L));
     }
 
-    public Product findById(Long id){
-        return data.stream().filter(p -> p.getId().equals(id)).findFirst().orElse(null);
+    @Override
+    public Product findById(Long id) {
+        return new Product(id , "kaito", 600L);
     }
-
-    // *******************************************************************
-
-
-   
-
 
     
 }
