@@ -1,23 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 75%;
+            margin: auto;
+        }
 
-    <h1 th:text="${title}">Productos</h1>
+        td,th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
 
-    <ul>
-        <li th:text="${user.name}"></li>
-        <li th:text="${user.lastName}"></li>
-        <li th:if="${user.email != null}" th:text="${user.email}"></li>
-        <li th:if="${user.email == null}" th:text="${'No tiene email'}"></li>
-    </ul>
-    
-</body>
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        div {
+            padding: 10px;
+        }
+    </style>
+  </head>
+
+  <body>
+    <h1>Productos</h1>
+    <div>
+      <button onclick="location.href='/productos/newProducto';">
+        Crear Producto
+      </button>
+      <button onclick="location.href='/productos/tipo';">
+        Lista de Productos
+      </button>
+    </div>
+
+    <div>
+      <table>
+        <tr>
+          <th>id</th>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Precio</th>
+          <th>Precio IVA%</th>
+          <th>Acciones</th>
+        </tr>
+        <tr th:each=" lista : ${productos} ">
+          <th th:text="${lista.id}"></th>
+          <th th:text="${lista.nombre}"></th>
+          <th th:text="${lista.precio_Tipo_Nombre}"></th>
+          <th th:text="${lista.precio}"></th>
+          <th th:text="${lista.precio_con_imp}"></th>
+          <th>
+            <a href="">Editar</a>
+            <span>|</span>
+            <a href="">Eliminar</a>
+          </th>
+        </tr>
+      </table>
+    </div>
+  </body>
 </html>

@@ -7,17 +7,58 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 75%;
+            margin: auto;
+        }
+
+        td,th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        div {
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 
-    <h1 th:text="${title}">Productos Tipo</h1>
+    <h1 >Productos Tipo</h1>
+    <div>
+        
+        <button onclick="location.href='/productos';">
+            Volver
+        </button>
+    </div>
 
-    <ul>
-        <li th:text="${user.name}"></li>
-        <li th:text="${user.lastName}"></li>
-        <li th:if="${user.email != null}" th:text="${user.email}"></li>
-        <li th:if="${user.email == null}" th:text="${'No tiene email'}"></li>
-    </ul>
+    <div>
+        <table >
+            <tr>
+                <th>id</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+            
+            </tr>
+            <tr th:each=" lista : ${tipo} ">
+                <th th:text="${lista.id}"></th>
+                <th th:text="${lista.nombre}"></th>
+                <th th:text="${lista.descripcion}"></th>
+                
+            </tr>
+            
+        
+        </table>
+
+    </div>
     
 </body>
 </html>

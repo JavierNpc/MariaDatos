@@ -1,40 +1,77 @@
 package com.example.ejercicio_final.Services;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.springframework.stereotype.Service;
 
+import com.example.ejercicio_final.Models.Producto;
+import com.example.ejercicio_final.Models.ProductoTipo;
+import com.example.ejercicio_final.Repository.ProductoRepository;
+import com.example.ejercicio_final.Repository.ProductoTipoRepository;
+
 @Service
 public class ServicioProducto implements InnerInterfazDeServicios{
+    
+    private ProductoRepository producto ;
+    private ProductoTipoRepository productoTipo;
 
+    public ServicioProducto(ProductoRepository producto ,ProductoTipoRepository productoTipo){
+        this.producto = producto;
+        this.productoTipo = productoTipo;
+    }
+  
     @Override
-    public String findAll(Object b) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    public ArrayList<Producto> findAll() {
+        return producto.findAll();
     }
 
     @Override
-    public Object findById(ArrayList<Object> lista, Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    public Producto findById(Long id) {
+        return producto.findById(id);
     }
 
     @Override
-    public void CrearRegistro() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'CrearRegistro'");
+    public ProductoRepository CrearRegistro(Long id, String nombre, Long precio, ProductoTipo tipo) {
+        if (id != null && !nombre.isEmpty() && precio != null &&  tipo != null) {
+            
+            producto.findAll().add(new Producto(id, nombre, precio, tipo));
+            Collections.sort(producto.findAll(), Comparator.comparing(Producto::getId));
+        }
+    
+        return producto;
     }
 
     @Override
-    public Object ActualizarRegistro(Object o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ActualizarRegistro'");
+    public ProductoRepository ActualizarRegistro(Long id, String nombre, Long precio, ProductoTipo tipo) {
+        if (id != null && !nombre.isEmpty() && precio != null &&  tipo != null) {
+            Producto modificado = null;
+            for (Producto p : producto.findAll()) {
+                if(p.getId().equals(id)){
+                    modificado = p;
+                    break;
+                }
+                if (modificado != null) {
+                    producto.findAll().remove(modificado);
+                    producto.findAll().add(new Producto(id, nombre, precio,tipo));
+                    Collections.sort(producto.findAll(), Comparator.comparing(Producto::getId));
+                }
+            }
+
+
+        }
+
+        return producto;
+       
     }
 
     @Override
-    public void EliminarRegistro(ArrayList<Object> lista, Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'EliminarRegistro'");
+    public void EliminarRegistro(Long id) {
+        producto.findAll().remove(producto.findById(id));
     }
+
+
+  
     
 }

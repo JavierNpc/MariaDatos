@@ -8,16 +8,34 @@
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script>
 </head>
+<style> 
+    input {
+      margin-top: 10px;
+    
+    }
+    
+</style>
 <body>
 
-    <h1 th:text="${title}">Crear Registro</h1>
+    <h1>Crear Registro</h1>
 
-    <ul>
-        <li th:text="${user.name}"></li>
-        <li th:text="${user.lastName}"></li>
-        <li th:if="${user.email != null}" th:text="${user.email}"></li>
-        <li th:if="${user.email == null}" th:text="${'No tiene email'}"></li>
-    </ul>
+    <form th:action="/productos" method="post">
+        <label for="Id">Id : </label>
+        <input th:field="*{id}"> 
+        <br>
+        <label for="Nombre">Nombre : </label>
+        <input th:field="*{nombre}">
+        <br>
+        <label for="precio">Precio : </label>
+        <input th:field="*{precio}">
+        <label for="tipo">Tipo Producto : </label>
+        <Select th:each="tipo = ${tipos}">
+            <option th:value="tipo" th:text="tipo.nombre"></option>
+        </Select>
+
+        <button type="submit">Crear</button>
+
+    </form>
     
 </body>
 </html>
