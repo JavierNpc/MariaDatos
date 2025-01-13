@@ -15,11 +15,10 @@ import com.example.ejercicio_final.Repository.ProductoTipoRepository;
 public class ServicioProducto implements InnerInterfazDeServicios{
     
     private ProductoRepository producto ;
-    private ProductoTipoRepository productoTipo;
-
-    public ServicioProducto(ProductoRepository producto ,ProductoTipoRepository productoTipo){
+   
+    public ServicioProducto(ProductoRepository producto ){
         this.producto = producto;
-        this.productoTipo = productoTipo;
+
     }
   
     @Override

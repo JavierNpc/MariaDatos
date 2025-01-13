@@ -19,19 +19,23 @@
 
     <h1>Crear Registro</h1>
 
-    <form th:action="/productos" method="post">
-        <label for="Id">Id : </label>
-        <input th:field="*{id}"> 
+    <form th:action="@{/productos/newProducto}" method="post">
+        <label for="id">Id : </label>
+        <input type="number" id="id" th:name="id" > 
         <br>
-        <label for="Nombre">Nombre : </label>
-        <input th:field="*{nombre}">
+        <label for="nombre">Nombre : </label>
+        <input type="text" id="nombre"  th:name="nombre">
         <br>
         <label for="precio">Precio : </label>
-        <input th:field="*{precio}">
-        <label for="tipo">Tipo Producto : </label>
-        <Select th:each="tipo = ${tipos}">
-            <option th:value="tipo" th:text="tipo.nombre"></option>
+        <input type="number" id="precio" th:name="precio">
+        <br>
+        <br>
+        <label for="categoria">Tipo Producto : </label>
+        <Select id="categoria" th:name="tipo">
+            <option th:each="tipo : ${tipos}" th:value="${tipo.id}"  th:text="${tipo.nombre}"></option>
         </Select>
+        <br>
+        <br>
 
         <button type="submit">Crear</button>
 
